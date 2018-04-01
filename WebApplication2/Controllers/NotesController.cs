@@ -13,7 +13,7 @@ namespace WebApplication2.Controllers
 {
     public class NotesController : Controller
     {
-        private NotesViewModelDBC db = new NotesViewModelDBC();
+        private LucidTrackerDbContext db = new LucidTrackerDbContext();
 
         // GET: NotesViewModels
         public ActionResult Index()

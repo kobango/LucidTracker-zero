@@ -9,7 +9,7 @@ namespace WebApplication2.Database
     public class LucidTrackerDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        
+        public DbSet<NotesViewModel> NotesViewModels { get; set; }
 
         public LucidTrackerDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -24,10 +24,7 @@ namespace WebApplication2.Database
         }
     }
 
-    public class NotesViewModelDBC : LucidTrackerDbContext
-    {
-        public DbSet<NotesViewModel> NotesViewModels { get; set; }
-    }
+    
     
 
 }
