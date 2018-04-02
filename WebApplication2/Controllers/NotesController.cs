@@ -18,7 +18,7 @@ namespace WebApplication2.Controllers
         // GET: NotesViewModels
         public ActionResult Index()
         {
-            return View(db.NotesViewModels.ToList());
+            return View(db.Notes.ToList());
         }
 
         // GET: NotesViewModels/Details/5
@@ -28,7 +28,7 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NotesViewModel notesViewModel = db.NotesViewModels.Find(id);
+            NotesViewModel notesViewModel = db.Notes.Find(id);
             if (notesViewModel == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.NotesViewModels.Add(notesViewModel);
+                db.Notes.Add(notesViewModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NotesViewModel notesViewModel = db.NotesViewModels.Find(id);
+            NotesViewModel notesViewModel = db.Notes.Find(id);
             if (notesViewModel == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NotesViewModel notesViewModel = db.NotesViewModels.Find(id);
+            NotesViewModel notesViewModel = db.Notes.Find(id);
             if (notesViewModel == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NotesViewModel notesViewModel = db.NotesViewModels.Find(id);
-            db.NotesViewModels.Remove(notesViewModel);
+            NotesViewModel notesViewModel = db.Notes.Find(id);
+            db.Notes.Remove(notesViewModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

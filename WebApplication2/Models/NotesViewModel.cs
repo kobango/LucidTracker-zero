@@ -13,5 +13,6 @@ namespace WebApplication2.Models
         public int Id { get; set; }
         public string Thema { get; set; }
         public string Text { get; set; }
+        public Guid UserID { get; set; }
     }
 }
