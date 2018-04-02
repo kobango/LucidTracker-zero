@@ -213,7 +213,7 @@ namespace WebApplication2.Controllers
                 // Wyślij wiadomość e-mail z tym łączem
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Resetuj hasło", "Resetuj hasło, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
+                await UserManager.SendEmailAsync(user.Id, "Resetuj hasło", "Witaj użytkowniku, aby zresetować hasło naciśnij ten link  <a href=\"" + callbackUrl + "\">tutaj</a> <p>Dziękujemy serdecznie za skorzystanie z naszych usług. </p> <p>Pozdrawiamy zespół Lucid Tracker</p>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
