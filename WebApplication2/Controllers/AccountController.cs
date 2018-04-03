@@ -158,7 +158,7 @@ namespace WebApplication2.Controllers
                     // Wyślij wiadomość e-mail z tym łączem
                      string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                      var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                     await UserManager.SendEmailAsync(user.Id, "Potwierdź konto", "Potwierdź konto, klikając <a href=\"" + callbackUrl + "\">tutaj</a>"+ " <p>Albo skopiuj następujący link do paska przeglądarki:" + callbackUrl+ "</p> <p> Dziękujemy serdecznie za skorzystanie z naszych usług. </p> ");
+                     await UserManager.SendEmailAsync(user.Id, "Potwierdź konto", "w celu aktywacji konta <a href=\"" + callbackUrl + "\">tutaj</a>"+ " <p>Albo skopiuj następujący link do paska przeglądarki:<p> </p>" + callbackUrl+ "</p> <p> Dziękujemy serdecznie za skorzystanie z naszych usług. </p> ");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -210,7 +210,7 @@ namespace WebApplication2.Controllers
                 // Wyślij wiadomość e-mail z tym łączem
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Resetuj hasło", "Witaj użytkowniku, aby zresetować hasło naciśnij ten link  <a href=\"" + callbackUrl + "\">tutaj</a> <p> Albo skopiuj następujący link do paska przeglądarki:" + callbackUrl+ " <p> Dziękujemy serdecznie za skorzystanie z naszych usług. </p>");
+                await UserManager.SendEmailAsync(user.Id, "Resetuj hasło", "w celu zresetowania hasła  <a href=\"" + callbackUrl + "\">tutaj</a> <p> Albo skopiuj następujący link do paska przeglądarki:<p> </p>" + callbackUrl+ " <p> Dziękujemy serdecznie za skorzystanie z naszych usług. </p>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

@@ -30,7 +30,7 @@ namespace WebApplication2
         void sendMail(IdentityMessage message)
         {
             #region formatter
-            string text = string.Format("<p>Proszę kliknij następujący link {0}: {1} </p>", message.Subject, message.Body);
+            string text = string.Format("<p>Kliknij następujący link {0} </p>", message.Body);
             string html =  message.Body ;
 
             html += HttpUtility.HtmlEncode(@"Pozdrawiamy zespół Lucid Tracker");
