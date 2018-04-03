@@ -194,13 +194,16 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Database\LucidTrackerDbContext.cs" />
     <Compile Include="Controllers\NotesController.cs" />
-    <Compile Include="Database\LucidTrackerDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201804021531174_add-notes.cs" />
     <Compile Include="Migrations\201804021531174_add-notes.Designer.cs">
       <DependentUpon>201804021531174_add-notes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804030927585_fix-migration.cs" />
+    <Compile Include="Migrations\201804030927585_fix-migration.Designer.cs">
+      <DependentUpon>201804030927585_fix-migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -290,6 +293,11 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804030927585_fix-migration.resx">
+      <DependentUpon>201804030927585_fix-migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

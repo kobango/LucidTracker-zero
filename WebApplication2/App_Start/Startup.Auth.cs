@@ -6,7 +6,6 @@ using Owin;
 using System;
 using WebApplication2.Database;
 using WebApplication2.Models;
-using WebApplication2.Database;
 
 namespace WebApplication2
 {
