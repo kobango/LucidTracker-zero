@@ -197,10 +197,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804021531174_add-notes.cs" />
-    <Compile Include="Migrations\201804021531174_add-notes.Designer.cs">
-      <DependentUpon>201804021531174_add-notes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201804030927585_fix-migration.cs" />
     <Compile Include="Migrations\201804030927585_fix-migration.Designer.cs">
       <DependentUpon>201804030927585_fix-migration.cs</DependentUpon>
