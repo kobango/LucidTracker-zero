@@ -3,14 +3,9 @@ namespace WebApplication2.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstmigration : DbMigration
+    public partial class fixmigration : DbMigration
     {
         public override void Up()
-        {
-            DropTable("dbo.NotesViewModels");
-        }
-        
-        public override void Down()
         {
             CreateTable(
                 "dbo.NotesViewModels",
@@ -23,6 +18,11 @@ namespace WebApplication2.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+        }
+        
+        public override void Down()
+        {
+            DropTable("dbo.NotesViewModels");
         }
     }
 }
