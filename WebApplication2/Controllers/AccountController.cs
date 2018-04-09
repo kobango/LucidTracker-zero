@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication2.Models;
+using WebApplication2.Models.AccountViewModel;
 
 namespace WebApplication2.Controllers
 {
