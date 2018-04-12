@@ -9,7 +9,12 @@ namespace WebApplication2.Controllers
 {
     public class NotesController : Controller
     {
-        private LucidTrackerDbContext db = new LucidTrackerDbContext();
+        private LucidTrackerDbContext db;
+
+        public NotesController(LucidTrackerDbContext db)
+        {
+            this.db = db;
+        }
 
         // GET: NotesViewModels
         public ActionResult Index()
