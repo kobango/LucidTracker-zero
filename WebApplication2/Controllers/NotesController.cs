@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApplication2.Models;
 using WebApplication2.Database;
+using WebApplication2.Models.Notes;
 
 namespace WebApplication2.Controllers
 {
     public class NotesController : Controller
     {
-        private LucidTrackerDbContext db = new LucidTrackerDbContext();
+        private LucidTrackerDbContext db;
+
+        public NotesController(LucidTrackerDbContext db)
+        {
+            this.db = db;
+        }
 
         // GET: NotesViewModels
         public ActionResult Index()
@@ -125,6 +126,6 @@ namespace WebApplication2.Controllers
             base.Dispose(disposing);
         }
 
-        
+
     }
 }
