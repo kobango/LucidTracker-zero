@@ -156,9 +156,9 @@ namespace WebApplication2.Controllers
 
                     // Aby uzyskać więcej informacji o sposobie włączania potwierdzania konta i resetowaniu hasła, odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=320771
                     // Wyślij wiadomość e-mail z tym łączem
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Potwierdź konto", "Potwierdź konto, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
+                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                     await UserManager.SendEmailAsync(user.Id, "Potwierdź konto", "w celu aktywacji konta <a href=\"" + callbackUrl + "\">tutaj</a>"+ " <p>Albo skopiuj następujący link do paska przeglądarki:<p> </p>" + callbackUrl+ "</p> <p> Dziękujemy serdecznie za skorzystanie z naszych usług. </p> ");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -199,7 +199,7 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Nie ujawniaj informacji o tym, że użytkownik nie istnieje lub nie został potwierdzony
@@ -208,10 +208,10 @@ namespace WebApplication2.Controllers
 
                 // Aby uzyskać więcej informacji o sposobie włączania potwierdzania konta i resetowaniu hasła, odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=320771
                 // Wyślij wiadomość e-mail z tym łączem
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Resetuj hasło", "Resetuj hasło, klikając <a href=\"" + callbackUrl + "\">tutaj</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Resetuj hasło", "w celu zresetowania hasła  <a href=\"" + callbackUrl + "\">tutaj</a> <p> Albo skopiuj następujący link do paska przeglądarki:<p> </p>" + callbackUrl+ " <p> Dziękujemy serdecznie za skorzystanie z naszych usług. </p>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // Dotarcie do tego miejsca wskazuje, że wystąpił błąd, wyświetl ponownie formularz
@@ -245,7 +245,7 @@ namespace WebApplication2.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Nie ujawniaj informacji o tym, że użytkownik nie istnieje
