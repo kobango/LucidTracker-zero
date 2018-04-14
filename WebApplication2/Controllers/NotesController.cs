@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication2.Models;
 using WebApplication2.Database;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication2.Controllers
 {
@@ -18,7 +19,14 @@ namespace WebApplication2.Controllers
         // GET: NotesViewModels
         public ActionResult Index()
         {
-            return View(db.Notes.ToList());
+            if (Request.IsAuthenticated)
+            {
+                return View(db.Notes.ToList().Where(x => x.UserID == new Guid(User.Identity.GetUserId())));
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // GET: NotesViewModels/Details/5
@@ -51,6 +59,7 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
+                notesViewModel.UserID = new Guid(User.Identity.GetUserId());
                 db.Notes.Add(notesViewModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -81,6 +90,7 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Thema,Text")] NotesViewModel notesViewModel)
         {
+            notesViewModel.UserID = new Guid(User.Identity.GetUserId());
             if (ModelState.IsValid)
             {
                 db.Entry(notesViewModel).State = EntityState.Modified;
@@ -98,6 +108,7 @@ namespace WebApplication2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             NotesViewModel notesViewModel = db.Notes.Find(id);
+            notesViewModel.UserID = new Guid(User.Identity.GetUserId());
             if (notesViewModel == null)
             {
                 return HttpNotFound();
@@ -111,6 +122,7 @@ namespace WebApplication2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             NotesViewModel notesViewModel = db.Notes.Find(id);
+            notesViewModel.UserID = new Guid(User.Identity.GetUserId());
             db.Notes.Remove(notesViewModel);
             db.SaveChanges();
             return RedirectToAction("Index");
