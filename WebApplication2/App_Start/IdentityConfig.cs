@@ -25,13 +25,13 @@ namespace WebApplication2
             {
                 sendMail(message);
             });
-        }
+                }
 
         void sendMail(IdentityMessage message)
         {
             #region formatter
             string text = string.Format("<p>Kliknij następujący link {0} </p>", message.Body);
-            string html = message.Body;
+            string html =  message.Body ;
 
             html += HttpUtility.HtmlEncode(@"Pozdrawiamy zespół Lucid Tracker");
             #endregion
@@ -51,7 +51,15 @@ namespace WebApplication2
         }
     }
 
-    
+    public class SmsService : IIdentityMessageService
+    {
+        public Task SendAsync(IdentityMessage message)
+        {
+            // Dołącz tutaj usługę wiadomości SMS, aby wysłać wiadomość SMS.
+            return Task.FromResult(0);
+        }
+    }
+
     // Skonfiguruj menedżera użytkowników aplikacji używanego w tej aplikacji. Interfejs UserManager jest zdefiniowany w produkcie ASP.NET Identity i jest używany przez aplikację.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
@@ -87,9 +95,17 @@ namespace WebApplication2
 
             // Zarejestruj dostawców uwierzytelniania dwuetapowego. W przypadku tej aplikacji kod weryfikujący użytkownika jest uzyskiwany przez telefon i pocztą e-mail
             // Możesz zapisać własnego dostawcę i dołączyć go tutaj.
-           
+            manager.RegisterTwoFactorProvider("Kod — telefon", new PhoneNumberTokenProvider<ApplicationUser>
+            {
+                MessageFormat = "Twój kod zabezpieczający: {0}"
+            });
+            manager.RegisterTwoFactorProvider("Kod — e-mail", new EmailTokenProvider<ApplicationUser>
+            {
+                Subject = "Kod zabezpieczeń",
+                BodyFormat = "Twój kod zabezpieczający: {0}"
+            });
             manager.EmailService = new EmailService();
-            
+            manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

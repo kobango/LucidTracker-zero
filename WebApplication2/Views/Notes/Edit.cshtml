@@ -1,4 +1,4 @@
-﻿@model WebApplication2.Models.Notes.NotesViewModel
+﻿@model WebApplication2.Models.NotesViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
             </div>
         </div>

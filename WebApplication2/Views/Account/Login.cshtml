@@ -1,4 +1,4 @@
-﻿@using WebApplication2.Models.AccountViewModel
+﻿@using WebApplication2.Models
 @model LoginViewModel
 @{
     ViewBag.Title = "Zaloguj";
@@ -50,7 +50,12 @@
                     </p>
             }
         </section>
-    </div>   
+    </div>
+    <div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
 </div>
 
 @section Scripts {

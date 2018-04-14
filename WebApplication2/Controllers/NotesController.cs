@@ -1,20 +1,19 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using WebApplication2.Models;
 using WebApplication2.Database;
-using WebApplication2.Models.Notes;
 
 namespace WebApplication2.Controllers
 {
     public class NotesController : Controller
     {
-        private LucidTrackerDbContext db;
-
-        public NotesController(LucidTrackerDbContext db)
-        {
-            this.db = db;
-        }
+        private LucidTrackerDbContext db = new LucidTrackerDbContext();
 
         // GET: NotesViewModels
         public ActionResult Index()
@@ -23,19 +22,19 @@ namespace WebApplication2.Controllers
         }
 
         // GET: NotesViewModels/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NotesViewModel notesViewModel = db.Notes.Find(id);
-            if (notesViewModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(notesViewModel);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    NotesViewModel notesViewModel = db.Notes.Find(id);
+        //    if (notesViewModel == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(notesViewModel);
+        //}
 
         // GET: NotesViewModels/Create
         public ActionResult Create()
@@ -126,6 +125,6 @@ namespace WebApplication2.Controllers
             base.Dispose(disposing);
         }
 
-
+        
     }
 }
