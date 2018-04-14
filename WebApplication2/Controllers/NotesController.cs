@@ -21,7 +21,7 @@ namespace WebApplication2.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                return View(db.Notes.ToList());
+                return View(db.Notes.ToList().Where(x => x.UserID == new Guid(User.Identity.GetUserId())));
             }
             else
             {
