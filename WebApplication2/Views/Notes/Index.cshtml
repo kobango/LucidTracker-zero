@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+
+        </th>
+        <th>
             @Html.DisplayName("Temat")
         </th>
         <th>
@@ -22,6 +25,10 @@
 
 @foreach (var item in Model) {
     <tr>
+
+        <td>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrXalSoPE2agySgycP7WSX0ndZIVan_RwESUsWe1ka1vqyef2a" style="height:20px;width:20px" />
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Thema)
         </td>
