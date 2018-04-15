@@ -8,6 +8,7 @@ namespace WebApplication2.Controllers
 {
     public class TutorialsController : Controller
     {
+<<<<<<< HEAD
         // GET: Tutorials
         public ActionResult Index()
         {
@@ -19,6 +20,12 @@ namespace WebApplication2.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+=======
+        // GET: PDFViewer
+        public ActionResult Index()
+        {
+            return View();
+>>>>>>> note_views
         }
     }
 }
