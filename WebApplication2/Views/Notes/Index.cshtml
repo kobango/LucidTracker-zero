@@ -4,24 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista notatek</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Stwórz nową notatkę", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Thema)
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayName("Temat")
+        </th>
+        <th>
+            @Html.DisplayName("Tekst")
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+
+        <td>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrXalSoPE2agySgycP7WSX0ndZIVan_RwESUsWe1ka1vqyef2a" style="height:20px;width:20px" />
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Thema)
         </td>
@@ -29,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.Text)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.Id }) |
+           
+            @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
