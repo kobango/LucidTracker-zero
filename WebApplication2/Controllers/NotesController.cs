@@ -3,14 +3,17 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using WebApplication2.Database;
-using WebApplication2.Models.Notes;
+using WebApplication2.Models;
+using WebApplication2.ViewModels;
 
 namespace WebApplication2.Controllers
 {
     public class NotesController : Controller
     {
-        private LucidTrackerDbContext db;
+        private LucidTrackerDbContext db;//to pojdzie do usuniecia
+        private NotesManager manager = new NotesManager(new LucidTrackerDbContext());
 
+        //konstruktor też będzie do usunięcia 
         public NotesController(LucidTrackerDbContext db)
         {
             this.db = db;
@@ -19,7 +22,7 @@ namespace WebApplication2.Controllers
         // GET: NotesViewModels
         public ActionResult Index()
         {
-            return View(db.Notes.ToList());
+            return View(manager.GetAllNotes());
         }
 
         // GET: NotesViewModels/Details/5

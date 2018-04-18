@@ -2,7 +2,7 @@
 using WebApplication2.Models;
 using WebApplication2;
 using System.Data.Entity;
-using WebApplication2.Models.Notes;
+using WebApplication2.ViewModels;
 
 namespace WebApplication2.Database
 {

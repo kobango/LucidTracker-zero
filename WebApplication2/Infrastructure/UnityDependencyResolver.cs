@@ -20,8 +20,9 @@ namespace WebApplication2.Infrastructure
             {
                 return unityContainer.Resolve(serviceType);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.Out.WriteLine(ex.Message);
                 return null;
             }
         }

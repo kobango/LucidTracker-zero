@@ -227,13 +227,14 @@
       <DependentUpon>201804030927585_fix-migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModel\ForgotPasswordViewModel.cs" />
-    <Compile Include="Models\AccountViewModel\ForgotViewModel.cs" />
-    <Compile Include="Models\AccountViewModel\LoginViewModel.cs" />
-    <Compile Include="Models\AccountViewModel\RegisterViewModel.cs" />
-    <Compile Include="Models\AccountViewModel\ResetPasswordViewModel.cs" />
+    <Compile Include="Models\NotesManager.cs" />
+    <Compile Include="ViewModels\AccountViewModel\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModel\ForgotViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModel\ResetPasswordViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Notes\NotesViewModel.cs" />
+    <Compile Include="ViewModels\NotesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
