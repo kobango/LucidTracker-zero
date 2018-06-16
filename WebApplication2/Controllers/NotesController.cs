@@ -28,16 +28,7 @@ namespace WebApplication2.Controllers
         // GET: NotesViewModels/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NotesViewModel notesViewModel = db.Notes.Find(id);
-            if (notesViewModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(notesViewModel);
+            return manager.Details(id);
         }
 
         // GET: NotesViewModels/Create
@@ -53,29 +44,13 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Thema,Text")] NotesViewModel notesViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                db.Notes.Add(notesViewModel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(notesViewModel);
+            return manager.Create(notesViewModel);
         }
 
         // GET: NotesViewModels/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NotesViewModel notesViewModel = db.Notes.Find(id);
-            if (notesViewModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(notesViewModel);
+            return manager.Edit(id);
         }
 
         // POST: NotesViewModels/Edit/5
@@ -85,28 +60,13 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Thema,Text")] NotesViewModel notesViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(notesViewModel).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(notesViewModel);
+            return manager.Edit(notesViewModel);
         }
 
         // GET: NotesViewModels/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NotesViewModel notesViewModel = db.Notes.Find(id);
-            if (notesViewModel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(notesViewModel);
+            return manager.Delete(id);
         }
 
         // POST: NotesViewModels/Delete/5
@@ -114,19 +74,12 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NotesViewModel notesViewModel = db.Notes.Find(id);
-            db.Notes.Remove(notesViewModel);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return manager.DeleteConfirmed(id);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            manager.Dispose();
         }
 
 
